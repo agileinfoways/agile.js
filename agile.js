@@ -60,7 +60,7 @@ Array.prototype.has_duplicates_assoc = function(key) {
 	}
 
 	for(k in obj) {
-		if(obj[key] > 1) {
+		if(obj[k] > 1) {
 			status = true;
 			break;
 		}
