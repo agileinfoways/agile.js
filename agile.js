@@ -31,6 +31,25 @@ Array.prototype.unique = function(){
  * If array has duplicate elements it will return true else false
  * @return {Boolean} 
  */
+Array.prototype.has_duplicates = function() {
+	var obj = {}, i, status;
+	for (i = 0, j = this.length; i < j; i++) {
+		obj[this[i]] = (obj[this[i]] || 0) + 1;
+	}
+
+	for(var key in obj) {
+		if(obj[key] > 1) {
+			status = true;
+			break;
+		}
+	}
+	return status;
+};
+
+/**
+ * If array has duplicate elements in specified key it will return true else false
+ * @return {Boolean} 
+ */
 Array.prototype.has_duplicates_assoc = function(key) {
 	
 	typecheck(key, 'string');
@@ -41,21 +60,6 @@ Array.prototype.has_duplicates_assoc = function(key) {
 	}
 
 	for(k in obj) {
-		if(obj[key] > 1) {
-			status = true;
-			break;
-		}
-	}
-	return status;
-};
-
-Array.prototype.has_duplicates = function() {
-	var obj = {}, i, status;
-	for (i = 0, j = this.length; i < j; i++) {
-		obj[this[i]] = (obj[this[i]] || 0) + 1;
-	}
-
-	for(var key in obj) {
 		if(obj[key] > 1) {
 			status = true;
 			break;
@@ -76,7 +80,6 @@ Array.prototype.duplicates = function() {
 
 	return obj;
 };
-
 
 /**
  * Finds duplicates from two dimention array based on key provided
