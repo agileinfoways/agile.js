@@ -1,0 +1,32 @@
+{
+  "name": "agile-js",
+  "version": "1.0.0",
+  "description": "A JavaScript utility for complex javascript operations",
+  "main": "agile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agileinfoways/agile-js.git"
+  },
+  "keywords": [
+    "agile",
+    "agileinfoways",
+    "agile",
+    "js"
+  ],
+  "author": "Agile Infoways Pvt. Ltd.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agileinfoways/agile-js/issues"
+  },
+  "homepage": "https://github.com/agileinfoways/agile-js#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
