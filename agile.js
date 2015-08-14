@@ -15,7 +15,7 @@ function typecheck(arg, type) {
  * Get Unique elements from array
  * @return [array] Array of unique elements
  */
-Array.prototype.getUnique = function(){
+Array.prototype.unique = function(){
    var u = {}, a = [], i;
    for(i = 0, l = this.length; i < l; ++i){
       if(u.hasOwnProperty(this[i])) {
