@@ -205,7 +205,26 @@ String.prototype.ltrim = function(c) {
 	return a.replace(new RegExp("[" + c + "]+$"), "").reverse();
 };
 
-
+/**
+ * Returns string after the given string if bool is false else returns string before the given string.
+ * @param `needle` string which we will use as needle
+ * @param  `bool` flag which we will use to give output
+ * @return `string`
+ */
+String.prototype.strstr = function(needle,bool) {
+	var pos = 0,string = this;
+	string += '';
+	pos = string.indexOf(needle);
+	if (pos == -1) {
+		throw "Needle string should not be empty!";
+	} else {
+		if (bool) {
+			return string.substr(0, pos);
+		} else {
+			return string.slice(pos);
+		}
+	}
+};
 
 /** ARRAY FUNCTIONS */
 
