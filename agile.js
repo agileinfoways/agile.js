@@ -171,6 +171,14 @@ String.prototype.html_entities_decode = function() {
 };
 
 /**
+ * Reverse the string
+ * @return `string`
+ */
+String.prototype.reverse = function() {
+	return this.split('').reverse().join('');
+};
+
+/**
  * Trims specified character from the end of th string, by default removes space
  * @param  `string` c Character to be trimmed
  * @return `string`
@@ -182,6 +190,21 @@ String.prototype.rtrim = function(c) {
 	c = c ? c : "\s";
 	return a.replace(new RegExp("[" + c + "]+$"), "");
 };
+
+/**
+ * Trims specified character from the beginning of the string, by default removes space
+ * @param  `string` c Character to be trimmed
+ * @return `string`
+ */
+String.prototype.ltrim = function(c) {
+	var str = this.reverse();
+	if (c)
+		typecheck(c, 'string');
+	var a = str.replace(/\s+$/, "");
+	c = c ? c : "\s";
+	return a.replace(new RegExp("[" + c + "]+$"), "").reverse();
+};
+
 
 
 /** ARRAY FUNCTIONS */
