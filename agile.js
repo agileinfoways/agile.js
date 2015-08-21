@@ -8,43 +8,43 @@
  */
 
 function typecheck(arg, type) {
-    switch (type) {
-        case 'string':
-            if (!arg || typeof arg !== 'string') {
-                throw "Data Type Error : Expecting string. Found " + typeof arg + '.';
-            }
-            break;
-        case 'number':
-            if (arg !== 0 && (!arg || typeof arg !== 'number')) {
-                throw "Data Type Error : Expecting number. Found " + typeof arg + '.';
-            }
+	switch (type) {
+		case 'string':
+			if (!arg || typeof arg !== 'string') {
+				throw "Data Type Error : Expecting string. Found " + typeof arg + '.';
+			}
+			break;
+		case 'number':
+			if (arg !== 0 && (!arg || typeof arg !== 'number')) {
+				throw "Data Type Error : Expecting number. Found " + typeof arg + '.';
+			}
 
-            break;
-        case 'bulk':
-            if (!arg || !(arg instanceof Array)) {
-                throw "Data Type Error : Expecting Array. Found " + typeof arg + '.';
-            }
-            if (arg.length === 0) {
-                throw "The first argument supplied is an empty Array. Please supply array elements.";
-            }
+			break;
+		case 'bulk':
+			if (!arg || !(arg instanceof Array)) {
+				throw "Data Type Error : Expecting Array. Found " + typeof arg + '.';
+			}
+			if (arg.length === 0) {
+				throw "The first argument supplied is an empty Array. Please supply array elements.";
+			}
 
-            for (i = 0; i < arg.length; i++) {
-                if (arg[i].arg === undefined) {
-                    throw "Missing Argument " + (i + 1) + '.';
-                } else if (arg[i].expected === 'array') {
-                    if (!(arg[i].arg instanceof Array)) {
-                        throw "Data Type Error : Expecting " + arg[i].expected + " for Argument " + (i + 1) + ', but found ' + typeof arg[i].arg + ".";
-                    }
-                } else {
-                    if (typeof arg[i].arg !== arg[i].expected) {
-                        throw "Data Type Error : Expecting " + arg[i].expected + " for Argument " + (i + 1) + ', but found ' + typeof arg[i].arg + ".";
-                    }
-                }
+			for (i = 0; i < arg.length; i++) {
+				if (arg[i].arg === undefined) {
+					throw "Missing Argument " + (i + 1) + '.';
+				} else if (arg[i].expected === 'array') {
+					if (!(arg[i].arg instanceof Array)) {
+						throw "Data Type Error : Expecting " + arg[i].expected + " for Argument " + (i + 1) + ', but found ' + typeof arg[i].arg + ".";
+					}
+				} else {
+					if (typeof arg[i].arg !== arg[i].expected) {
+						throw "Data Type Error : Expecting " + arg[i].expected + " for Argument " + (i + 1) + ', but found ' + typeof arg[i].arg + ".";
+					}
+				}
 
 
-            }
-            break;
-    }
+			}
+			break;
+	}
 }
 
 /** STRING FUNCTIONS */
@@ -54,8 +54,8 @@ function typecheck(arg, type) {
  * @return `string`
  */
 String.prototype.lcfirst = function() {
-    var opStr = this.trim();
-    return opStr.charAt(0).toLowerCase() + opStr.substr(1);
+	var opStr = this.trim();
+	return opStr.charAt(0).toLowerCase() + opStr.substr(1);
 };
 
 
@@ -68,35 +68,35 @@ String.prototype.lcfirst = function() {
  */
 String.prototype.strpad = function(padCh, padLen, padMode) {
 
-    padLen = padLen || 1;
-    padMode = padMode || "LEFT";
+	padLen = padLen || 1;
+	padMode = padMode || "LEFT";
 
-    typecheck([{
-        arg: padCh,
-        expected: 'string'
-    }, {
-        arg: padLen,
-        expected: 'number'
-    }, {
-        arg: padMode,
-        expected: 'string'
-    }], 'bulk');
+	typecheck([{
+		arg: padCh,
+		expected: 'string'
+	}, {
+		arg: padLen,
+		expected: 'number'
+	}, {
+		arg: padMode,
+		expected: 'string'
+	}], 'bulk');
 
-    if (!(padMode.toUpperCase() === 'LEFT' || padMode.toUpperCase() === 'RIGHT' || padMode.toUpperCase() === 'BOTH')) {
-        throw "Data Value Error: Expecting LEFT, RIGHT or BOTH for third argument. Found " + padMode + '.';
-    }
+	if (!(padMode.toUpperCase() === 'LEFT' || padMode.toUpperCase() === 'RIGHT' || padMode.toUpperCase() === 'BOTH')) {
+		throw "Data Value Error: Expecting LEFT, RIGHT or BOTH for third argument. Found " + padMode + '.';
+	}
 
-    var result = this;
+	var result = this;
 
-    if (padMode.toUpperCase() === 'LEFT' || padMode.toUpperCase() === 'BOTH') {
-        result = padCh.repeat(padLen) + result;
-    }
+	if (padMode.toUpperCase() === 'LEFT' || padMode.toUpperCase() === 'BOTH') {
+		result = padCh.repeat(padLen) + result;
+	}
 
-    if (padMode.toUpperCase() === 'RIGHT' || padMode.toUpperCase() === 'BOTH') {
-        result = result + padCh.repeat(padLen);
-    }
+	if (padMode.toUpperCase() === 'RIGHT' || padMode.toUpperCase() === 'BOTH') {
+		result = result + padCh.repeat(padLen);
+	}
 
-    return result;
+	return result;
 };
 
 /**
@@ -105,7 +105,7 @@ String.prototype.strpad = function(padCh, padLen, padMode) {
  * @return string 
  */
 String.prototype.repeat = function(len) {
-    return Array(len + 1).join(this);
+	return Array(len + 1).join(this);
 };
 
 
@@ -115,11 +115,11 @@ String.prototype.repeat = function(len) {
  */
 String.prototype.ucwords = function() {
 
-    var strArray = this.trim().split(' ');
-    for (i = 0; i < strArray.length; i++) {
-        strArray[i] = strArray[i].charAt(0).toUpperCase() + strArray[i].slice(1);
-    }
-    return strArray.join(" ");
+	var strArray = this.trim().split(' ');
+	for (i = 0; i < strArray.length; i++) {
+		strArray[i] = strArray[i].charAt(0).toUpperCase() + strArray[i].slice(1);
+	}
+	return strArray.join(" ");
 };
 
 /**
@@ -129,17 +129,17 @@ String.prototype.ucwords = function() {
  */
 
 String.prototype.htmlspecialchars = function() {
-    var map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#039;'
-    };
+	var map = {
+		'&': '&amp;',
+		'<': '&lt;',
+		'>': '&gt;',
+		'"': '&quot;',
+		"'": '&#039;'
+	};
 
-    return this.replace(/[&<>"']/g, function(m) {
-        return map[m];
-    });
+	return this.replace(/[&<>"']/g, function(m) {
+		return map[m];
+	});
 
 };
 
@@ -148,11 +148,11 @@ String.prototype.htmlspecialchars = function() {
  * @return `string`
  */
 String.prototype.html_entities_decode = function() {
-    var t, x;
-    t = document.createElement('textarea');
-    t.style.display = "none";
-    t.innerHTML = this;
-    return t.innerText;
+	var t, x;
+	t = document.createElement('textarea');
+	t.style.display = "none";
+	t.innerHTML = this;
+	return t.innerText;
 };
 
 /**
@@ -161,11 +161,11 @@ String.prototype.html_entities_decode = function() {
  * @return `string`
  */
 String.prototype.rtrim = function(c) {
-    if (c)
-        typecheck(c, 'string');
-    var a = this.replace(/\s+$/, "");
-    c = c ? c : "\s";
-    return a.replace(new RegExp("[" + c + "]+$"), "");
+	if (c)
+		typecheck(c, 'string');
+	var a = this.replace(/\s+$/, "");
+	c = c ? c : "\s";
+	return a.replace(new RegExp("[" + c + "]+$"), "");
 };
 
 
@@ -176,17 +176,17 @@ String.prototype.rtrim = function(c) {
  * @return [array] Array of unique elements
  */
 Array.prototype.unique = function() {
-    var u = {},
-        a = [],
-        i;
-    for (i = 0, l = this.length; i < l; ++i) {
-        if (u.hasOwnProperty(this[i])) {
-            continue;
-        }
-        a.push(this[i]);
-        u[this[i]] = 1;
-    }
-    return a;
+	var u = {},
+		a = [],
+		i;
+	for (i = 0, l = this.length; i < l; ++i) {
+		if (u.hasOwnProperty(this[i])) {
+			continue;
+		}
+		a.push(this[i]);
+		u[this[i]] = 1;
+	}
+	return a;
 };
 
 /**
@@ -194,19 +194,19 @@ Array.prototype.unique = function() {
  * @return {Boolean} 
  */
 Array.prototype.has_duplicates = function() {
-    var obj = {},
-        i, status;
-    for (i = 0, j = this.length; i < j; i++) {
-        obj[this[i]] = (obj[this[i]] || 0) + 1;
-    }
+	var obj = {},
+		i, status;
+	for (i = 0, j = this.length; i < j; i++) {
+		obj[this[i]] = (obj[this[i]] || 0) + 1;
+	}
 
-    for (var key in obj) {
-        if (obj[key] > 1) {
-            status = true;
-            break;
-        }
-    }
-    return status;
+	for (var key in obj) {
+		if (obj[key] > 1) {
+			status = true;
+			break;
+		}
+	}
+	return status;
 };
 
 /**
@@ -215,22 +215,22 @@ Array.prototype.has_duplicates = function() {
  */
 Array.prototype.has_duplicates_assoc = function(key) {
 
-    typecheck(key, 'string');
+	typecheck(key, 'string');
 
-    var obj = {},
-        i, status = false,
-        k;
-    for (i = 0, j = this.length; i < j; i++) {
-        obj[this[i][key]] = (obj[this[i][key]] || 0) + 1;
-    }
+	var obj = {},
+		i, status = false,
+		k;
+	for (i = 0, j = this.length; i < j; i++) {
+		obj[this[i][key]] = (obj[this[i][key]] || 0) + 1;
+	}
 
-    for (k in obj) {
-        if (obj[k] > 1) {
-            status = true;
-            break;
-        }
-    }
-    return status;
+	for (k in obj) {
+		if (obj[k] > 1) {
+			status = true;
+			break;
+		}
+	}
+	return status;
 };
 
 /**
@@ -238,13 +238,13 @@ Array.prototype.has_duplicates_assoc = function(key) {
  * @return `object` Duplicate elements containing their occurences
  */
 Array.prototype.duplicates = function() {
-    var obj = {},
-        i;
-    for (i = 0, j = this.length; i < j; i++) {
-        obj[this[i]] = (obj[this[i]] || 0) + 1;
-    }
+	var obj = {},
+		i;
+	for (i = 0, j = this.length; i < j; i++) {
+		obj[this[i]] = (obj[this[i]] || 0) + 1;
+	}
 
-    return obj;
+	return obj;
 };
 
 /**
@@ -254,17 +254,17 @@ Array.prototype.duplicates = function() {
  */
 Array.prototype.duplicates_assoc = function(key) {
 
-    typecheck(key, 'string');
+	typecheck(key, 'string');
 
-    if (!key) {
-        throw "Please provide a key to find duplicates.";
-    }
-    var obj = {},
-        i;
-    for (i = 0, j = this.length; i < j; i++) {
-        obj[this[i][key]] = (obj[this[i][key]] || 0) + 1;
-    }
-    return obj;
+	if (!key) {
+		throw "Please provide a key to find duplicates.";
+	}
+	var obj = {},
+		i;
+	for (i = 0, j = this.length; i < j; i++) {
+		obj[this[i][key]] = (obj[this[i][key]] || 0) + 1;
+	}
+	return obj;
 };
 
 /**
@@ -272,35 +272,35 @@ Array.prototype.duplicates_assoc = function(key) {
  * @return `string`
  */
 String.prototype.shuffle = function() {
-    var same, single = true,
-        op;
+	var same, single = true,
+		op;
 
-    function shuffle(str) {
-        var a = str.split(""),
-            n = a.length,
-            i, j, temp;
-        if (n == 1) {
-            return a.join("");
-        } else {
-            single = false;
-            for (i = n - 1; i > 0; i--) {
-                j = Math.floor(Math.random() * (i + 1));
-                tmp = a[i];
-                a[i] = a[j];
-                a[j] = tmp;
-            }
-            return a.join("").trim();
-        }
-    }
+	function shuffle(str) {
+		var a = str.split(""),
+			n = a.length,
+			i, j, temp;
+		if (n == 1) {
+			return a.join("");
+		} else {
+			single = false;
+			for (i = n - 1; i > 0; i--) {
+				j = Math.floor(Math.random() * (i + 1));
+				tmp = a[i];
+				a[i] = a[j];
+				a[j] = tmp;
+			}
+			return a.join("").trim();
+		}
+	}
 
-    op = shuffle(this);
-    if (!single) {
-        if (op == this) {
-            same = true;
-        }
-    }
-    if (same) {
-        return this.shuffle();
-    }
-    return op;
+	op = shuffle(this);
+	if (!single) {
+		if (op == this) {
+			same = true;
+		}
+	}
+	if (same) {
+		return this.shuffle();
+	}
+	return op;
 };
