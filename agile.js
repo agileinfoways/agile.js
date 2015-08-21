@@ -64,6 +64,15 @@ String.prototype.lcfirst = function() {
 	return opStr.charAt(0).toLowerCase() + opStr.substr(1);
 };
 
+/**
+ * Convert first letter to upper case of a string
+ * @return `string`
+ */
+String.prototype.ucfirst = function() {
+	var opStr = this.trim();
+	return opStr.charAt(0).toUpperCase() + opStr.substr(1);
+};
+
 
 /**
  * Pad a string with the characters that are given as arguments
