@@ -74,6 +74,20 @@ String.prototype.html_entities_decode = function() {
 	return t.innerText;
 };
 
+/**
+ * Trims specified character from the end of th string, by default removes space
+ * @param  `string` c Character to be trimmed
+ * @return `string`
+ */
+String.prototype.rtrim = function(c) {
+	if(c)
+		typecheck(c, 'string');
+	var a = this.replace(/\s+$/, "");
+	c = c ? c : "\s";
+	return a.replace(new RegExp("[" + c + "]+$"), "");
+};
+
+
 /** ARRAY FUNCTIONS */
 
 /**
