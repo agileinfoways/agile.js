@@ -154,3 +154,37 @@ Array.prototype.duplicates_assoc = function(key) {
 	}
 	return obj;
 };
+
+/**
+ * Returns shuffled string
+ * @return `string`
+ */
+String.prototype.shuffle = function () {
+	var same, single = true, op;
+	function shuffle(str){
+		var a = str.split(""), n = a.length, i, j, temp;
+		if(n == 1){
+			return a.join("");
+		} else{
+			single = false;
+			for(i = n - 1; i > 0; i--) {
+				j = Math.floor(Math.random() * (i + 1));
+				tmp = a[i];
+				a[i] = a[j];
+				a[j] = tmp;
+			}
+			return a.join("").trim();
+		}
+	}
+
+	op = shuffle(this);
+	if(!single){
+		if(op == this){
+			same = true;
+		}
+	}
+	if(same){
+		return this.shuffle();
+	}
+	return op;
+};
