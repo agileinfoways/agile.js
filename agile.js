@@ -15,7 +15,7 @@ function typecheck(arg, type) {
 
 /**
  * Convert first letter to lower case of a string
- * @return string
+ * @return `string`
  */
 String.prototype.lcfirst = function() {
 	var opStr = this.trim();
@@ -25,7 +25,7 @@ String.prototype.lcfirst = function() {
 
 /**
  * Upper case first letter of the word.
- * @return string String with uppercase first letter of word.
+ * @return `string` String with uppercase first letter of word.
  */
 String.prototype.ucwords = function() {
 
@@ -55,6 +55,18 @@ String.prototype.htmlspecialchars = function() {
 		return map[m];
 	});
 
+};
+
+/**
+ * Converts html entities to characters
+ * @return `string`
+ */
+String.prototype.html_entities_decode = function() {
+	var t, x;
+	t = document.createElement('textarea');
+	t.style.display = "none";
+	t.innerHTML = this;
+	return t.innerText;
 };
 
 /** ARRAY FUNCTIONS */
