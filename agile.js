@@ -20,6 +20,12 @@ function typecheck(arg, type) {
 			}
 
 			break;
+		case 'array':
+			if (arg !== 0 && (!arg || typeof arg !== 'number')) {
+				throw "Data Type Error : Expecting number. Found " + typeof arg + '.';
+			}
+
+			break;		
 		case 'bulk':
 			if (!arg || !(arg instanceof Array)) {
 				throw "Data Type Error : Expecting Array. Found " + typeof arg + '.';
@@ -67,9 +73,11 @@ String.prototype.lcfirst = function() {
  * @return 	string
  */
 String.prototype.strpad = function(padCh, padLen, padMode) {
+	var result = this;
 
 	padLen = padLen || 1;
 	padMode = padMode || "LEFT";
+	padMode = padMode.toUpperCase();
 
 	typecheck([{
 		arg: padCh,
@@ -82,17 +90,15 @@ String.prototype.strpad = function(padCh, padLen, padMode) {
 		expected: 'string'
 	}], 'bulk');
 
-	if (!(padMode.toUpperCase() === 'LEFT' || padMode.toUpperCase() === 'RIGHT' || padMode.toUpperCase() === 'BOTH')) {
+	if (!(padMode === 'LEFT' || padMode === 'RIGHT' || padMode === 'BOTH')) {
 		throw "Data Value Error: Expecting LEFT, RIGHT or BOTH for third argument. Found " + padMode + '.';
 	}
 
-	var result = this;
-
-	if (padMode.toUpperCase() === 'LEFT' || padMode.toUpperCase() === 'BOTH') {
+	if (padMode === 'LEFT' || padMode === 'BOTH') {
 		result = padCh.repeat(padLen) + result;
 	}
 
-	if (padMode.toUpperCase() === 'RIGHT' || padMode.toUpperCase() === 'BOTH') {
+	if (padMode === 'RIGHT' || padMode === 'BOTH') {
 		result = result + padCh.repeat(padLen);
 	}
 
