@@ -1,13 +1,51 @@
+/** UTILITY FUNCTIONS */
+
+/**
+ * Validates argument type and throws exception if needed
+ * @arg any type
+ * @type string - To be passed manually eg.: number, string, bulk(for multiple args)
+ * @return string
+ */
+
 function typecheck(arg, type) {
 	switch (type) {
 		case 'string':
 			if (!arg || typeof arg !== 'string') {
-				throw "Expecting string. Found " + typeof arg + '.';
+				throw "Data Type Error : Expecting string. Found " + typeof arg + '.';
 			}
 			break;
-		default:
+
+		case 'number':
+			if (arg !== 0 && (!arg || typeof arg !== 'number')) {
+				throw "Data Type Error : Expecting number. Found " + typeof arg + '.';
+			}
 			break;
 
+		case 'bulk':
+			if(!arg || !(arg instanceof Array)){
+				throw "Data Type Error : Expecting Array. Found " + typeof arg + '.';
+			}
+			if(arg.length === 0){
+				throw "The first argument supplied is an empty Array. Please supply array elements.";
+			}
+
+			for(i=0; i<arg.length; i++){
+				if(arg[i].arg === undefined){
+					throw "Missing Argument " + (i + 1) + '.';
+				}else if(arg[i].expected === 'array'){
+					if(!(arg[i].arg instanceof Array)){
+						throw "Data Type Error : Expecting " + arg[i].expected + " for Argument " + (i+1) + ', but found ' + typeof arg[i].arg + ".";
+					}	
+				}else
+				{
+					if(typeof arg[i].arg !== arg[i].expected){
+						throw "Data Type Error : Expecting " + arg[i].expected + " for Argument " + (i+1) + ', but found ' + typeof arg[i].arg + ".";
+					}	
+				}
+
+
+			}
+			break;
 	}
 }
 
@@ -20,6 +58,60 @@ function typecheck(arg, type) {
 String.prototype.lcfirst = function() {
 	var opStr = this.trim();
 	return opStr.charAt(0).toLowerCase() + opStr.substr(1);
+};
+
+
+/**
+ * Pad a string with the characters that are given as arguments
+ * @padCh  	string
+ * @padLen 	number - [Default 1]
+ * @padMode string - 'LEFT', 'RIGHT', 'BOTH' [Default 1]
+ * @return 	string
+ */
+String.prototype.strpad = function(padCh, padLen, padMode) {
+	
+	padLen = padLen || 1;
+	padMode = padMode || "LEFT";
+
+	typecheck([
+		{
+			arg: padCh,
+			expected: 'string'
+		},
+		{
+			arg: padLen,
+			expected: 'number'
+		},
+		{
+			arg: padMode,
+			expected: 'string'
+		}
+	], 'bulk');
+	
+	if(!(padMode.toUpperCase() === 'LEFT' || padMode.toUpperCase() === 'RIGHT' || padMode.toUpperCase() === 'BOTH')){
+		throw "Data Value Error: Expecting LEFT, RIGHT or BOTH for third argument. Found " + padMode + '.';
+	}
+
+	var result = this;
+
+	if(padMode.toUpperCase() === 'LEFT' || padMode.toUpperCase() === 'BOTH'){
+		result = padCh.repeat(padLen) + result;
+	}
+
+	if(padMode.toUpperCase() === 'RIGHT' || padMode.toUpperCase() === 'BOTH'){
+		result = result + padCh.repeat(padLen);	
+	}
+
+	return result;
+};
+
+/**
+ * Repeats a specific string till 'len' number of times
+ * @param  number len - number of repetitions that user wants to have.
+ * @return string 
+ */
+String.prototype.repeat = function(len){
+	return Array(len+1).join(this);
 };
 
 
