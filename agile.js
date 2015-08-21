@@ -18,7 +18,8 @@ function typecheck(arg, type) {
  * @return string
  */
 String.prototype.lcfirst = function() {
-	return this.charAt(0).toLowerCase() + this.substr(1);
+	var opStr = this.trim();
+	return opStr.charAt(0).toLowerCase() + opStr.substr(1);
 };
 
 
