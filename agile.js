@@ -18,9 +18,7 @@ function typecheck(arg, type) {
  * @return string
  */
 String.prototype.lcfirst = function() {
-	var string = this;
-	var first_char = string.charAt(0).toLowerCase();
-	return first_char + string.substr(1);
+	return this.charAt(0).toLowerCase() + this.substr(1);
 };
 
 /**
