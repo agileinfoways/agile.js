@@ -23,7 +23,22 @@ function typecheck(arg, type) {
  * @return string
  */
 String.prototype.lcfirst = function() {
-	return this.charAt(0).toLowerCase() + this.substr(1);
+	var opStr = this.trim();
+	return opStr.charAt(0).toLowerCase() + opStr.substr(1);
+};
+
+
+/**
+ * Upper case first letter of the word.
+ * @return string String with uppercase first letter of word.
+ */
+String.prototype.ucwords = function() {
+
+	var strArray = this.trim().split(' ');
+	for (i = 0; i < strArray.length; i++) {
+		strArray[i] = strArray[i].charAt(0).toUpperCase() + strArray[i].slice(1);
+	}
+	return strArray.join(" ");
 };
 
 /**
@@ -143,4 +158,38 @@ Array.prototype.duplicates_assoc = function(key) {
 		obj[this[i][key]] = (obj[this[i][key]] || 0) + 1;
 	}
 	return obj;
+};
+
+/**
+ * Returns shuffled string
+ * @return `string`
+ */
+String.prototype.shuffle = function () {
+	var same, single = true, op;
+	function shuffle(str){
+		var a = str.split(""), n = a.length, i, j, temp;
+		if(n == 1){
+			return a.join("");
+		} else{
+			single = false;
+			for(i = n - 1; i > 0; i--) {
+				j = Math.floor(Math.random() * (i + 1));
+				tmp = a[i];
+				a[i] = a[j];
+				a[j] = tmp;
+			}
+			return a.join("").trim();
+		}
+	}
+
+	op = shuffle(this);
+	if(!single){
+		if(op == this){
+			same = true;
+		}
+	}
+	if(same){
+		return this.shuffle();
+	}
+	return op;
 };
