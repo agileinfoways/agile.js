@@ -1,13 +1,13 @@
 function typecheck(arg, type) {
 	switch (type) {
 		case 'string':
-			if(!arg || typeof arg !== 'string') {
+			if (!arg || typeof arg !== 'string') {
 				throw "Expecting string. Found " + typeof arg + '.';
 			}
 			break;
 		default:
 			break;
-			
+
 	}
 }
 
@@ -23,22 +23,45 @@ String.prototype.lcfirst = function() {
 	return first_char + string.substr(1);
 };
 
+/**
+ * Convert special characters to HTML entities
+ * @param  `string` The string being converted. 
+ * @return `object` The converted string. 
+ */
+
+String.prototype.htmlspecialchars = function() {
+	var map = {
+		'&': '&amp;',
+		'<': '&lt;',
+		'>': '&gt;',
+		'"': '&quot;',
+		"'": '&#039;'
+	};
+
+	return this.replace(/[&<>"']/g, function(m) {
+		return map[m];
+	});
+
+};
+
 /** ARRAY FUNCTIONS */
 
 /**
  * Get Unique elements from array
  * @return [array] Array of unique elements
  */
-Array.prototype.unique = function(){
-   var u = {}, a = [], i;
-   for(i = 0, l = this.length; i < l; ++i){
-	  if(u.hasOwnProperty(this[i])) {
-		 continue;
-	  }
-	  a.push(this[i]);
-	  u[this[i]] = 1;
-   }
-   return a;
+Array.prototype.unique = function() {
+	var u = {},
+		a = [],
+		i;
+	for (i = 0, l = this.length; i < l; ++i) {
+		if (u.hasOwnProperty(this[i])) {
+			continue;
+		}
+		a.push(this[i]);
+		u[this[i]] = 1;
+	}
+	return a;
 };
 
 /**
@@ -46,13 +69,14 @@ Array.prototype.unique = function(){
  * @return {Boolean} 
  */
 Array.prototype.has_duplicates = function() {
-	var obj = {}, i, status;
+	var obj = {},
+		i, status;
 	for (i = 0, j = this.length; i < j; i++) {
 		obj[this[i]] = (obj[this[i]] || 0) + 1;
 	}
 
-	for(var key in obj) {
-		if(obj[key] > 1) {
+	for (var key in obj) {
+		if (obj[key] > 1) {
 			status = true;
 			break;
 		}
@@ -65,16 +89,18 @@ Array.prototype.has_duplicates = function() {
  * @return {Boolean} 
  */
 Array.prototype.has_duplicates_assoc = function(key) {
-	
+
 	typecheck(key, 'string');
 
-	var obj = {}, i, status = false, k;
+	var obj = {},
+		i, status = false,
+		k;
 	for (i = 0, j = this.length; i < j; i++) {
 		obj[this[i][key]] = (obj[this[i][key]] || 0) + 1;
 	}
 
-	for(k in obj) {
-		if(obj[k] > 1) {
+	for (k in obj) {
+		if (obj[k] > 1) {
 			status = true;
 			break;
 		}
@@ -87,7 +113,8 @@ Array.prototype.has_duplicates_assoc = function(key) {
  * @return `object` Duplicate elements containing their occurences
  */
 Array.prototype.duplicates = function() {
-	var obj = {}, i;
+	var obj = {},
+		i;
 	for (i = 0, j = this.length; i < j; i++) {
 		obj[this[i]] = (obj[this[i]] || 0) + 1;
 	}
@@ -101,13 +128,14 @@ Array.prototype.duplicates = function() {
  * @return `object`     Duplicate elements containing their occurences
  */
 Array.prototype.duplicates_assoc = function(key) {
-	
+
 	typecheck(key, 'string');
 
-	if(!key) {
+	if (!key) {
 		throw "Please provide a key to find duplicates.";
 	}
-	var obj = {}, i;
+	var obj = {},
+		i;
 	for (i = 0, j = this.length; i < j; i++) {
 		obj[this[i][key]] = (obj[this[i][key]] || 0) + 1;
 	}
