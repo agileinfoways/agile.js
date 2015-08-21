@@ -21,6 +21,20 @@ String.prototype.lcfirst = function() {
 	return this.charAt(0).toLowerCase() + this.substr(1);
 };
 
+
+/**
+ * Upper case first letter of the word.
+ * @return string String with uppercase first letter of word.
+ */
+String.prototype.ucwords = function() {
+
+	var strArray = this.trim().split(' ');
+	for (i = 0; i < strArray.length; i++) {
+		strArray[i] = strArray[i].charAt(0).toUpperCase() + strArray[i].slice(1);
+	}
+	return strArray.join(" ");
+}
+
 /**
  * Convert special characters to HTML entities
  * @param  `string` The string being converted. 
