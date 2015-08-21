@@ -5,6 +5,11 @@ function typecheck(arg, type) {
 				throw "Expecting string. Found " + typeof arg + '.';
 			}
 			break;
+		case 'number':
+		if (!arg || typeof arg !== 'number') {
+			throw "Expecting number. Found " + typeof arg + '.';
+		}
+		break;
 		default:
 			break;
 
