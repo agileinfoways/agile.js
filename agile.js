@@ -2,7 +2,7 @@ function typecheck(arg, type) {
 	switch (type) {
 		case 'string':
 			if(!arg || typeof arg !== 'string') {
-		    	throw "Expecting string. Found " + typeof arg + '.';
+				throw "Expecting string. Found " + typeof arg + '.';
 			}
 			break;
 		default:
@@ -11,6 +11,20 @@ function typecheck(arg, type) {
 	}
 }
 
+/** STRING FUNCTIONS */
+
+/**
+ * Convert first letter to lower case of a string
+ * @return string
+ */
+String.prototype.lcfirst = function() {
+	var string = this;
+	var first_char = string.charAt(0).toLowerCase();
+	return first_char + string.substr(1);
+};
+
+/** ARRAY FUNCTIONS */
+
 /**
  * Get Unique elements from array
  * @return [array] Array of unique elements
@@ -18,11 +32,11 @@ function typecheck(arg, type) {
 Array.prototype.unique = function(){
    var u = {}, a = [], i;
    for(i = 0, l = this.length; i < l; ++i){
-      if(u.hasOwnProperty(this[i])) {
-         continue;
-      }
-      a.push(this[i]);
-      u[this[i]] = 1;
+	  if(u.hasOwnProperty(this[i])) {
+		 continue;
+	  }
+	  a.push(this[i]);
+	  u[this[i]] = 1;
    }
    return a;
 };
