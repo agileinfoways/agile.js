@@ -33,7 +33,7 @@ String.prototype.ucwords = function() {
 		strArray[i] = strArray[i].charAt(0).toUpperCase() + strArray[i].slice(1);
 	}
 	return strArray.join(" ");
-}
+};
 
 /**
  * Convert special characters to HTML entities
