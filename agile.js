@@ -58,9 +58,8 @@
 	}
 
 	/**
-	 * Repeats a specific string till 'len' number of times
-	 * @param  number len - number of repetitions that user wants to have.
-	 * @return string 
+	 * Returns a character from the specified ASCII value.
+	 * @return character 
 	 */
 	Number.prototype.chr = function() {
 		return String.fromCharCode(this);
