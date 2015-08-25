@@ -64,6 +64,15 @@ String.prototype.lcfirst = function() {
 	return opStr.charAt(0).toLowerCase() + opStr.substr(1);
 };
 
+/**
+ * Convert first letter to upper case of a string
+ * @return `string`
+ */
+String.prototype.ucfirst = function() {
+	var opStr = this.trim();
+	return opStr.charAt(0).toUpperCase() + opStr.substr(1);
+};
+
 
 /**
  * Pad a string with the characters that are given as arguments
@@ -162,6 +171,14 @@ String.prototype.html_entities_decode = function() {
 };
 
 /**
+ * Reverse the string
+ * @return `string`
+ */
+String.prototype.reverse = function() {
+	return this.split('').reverse().join('');
+};
+
+/**
  * Trims specified character from the end of th string, by default removes space
  * @param  `string` c Character to be trimmed
  * @return `string`
@@ -174,6 +191,40 @@ String.prototype.rtrim = function(c) {
 	return a.replace(new RegExp("[" + c + "]+$"), "");
 };
 
+/**
+ * Trims specified character from the beginning of the string, by default removes space
+ * @param  `string` c Character to be trimmed
+ * @return `string`
+ */
+String.prototype.ltrim = function(c) {
+	var str = this.reverse();
+	if (c)
+		typecheck(c, 'string');
+	var a = str.replace(/\s+$/, "");
+	c = c ? c : "\s";
+	return a.replace(new RegExp("[" + c + "]+$"), "").reverse();
+};
+
+/**
+ * Returns string after the given string if bool is false else returns string before the given string.
+ * @param `needle` string which we will use as needle
+ * @param  `bool` flag which we will use to give output
+ * @return `string`
+ */
+String.prototype.strstr = function(needle,bool) {
+	var pos = 0,string = this;
+	string += '';
+	pos = string.indexOf(needle);
+	if (pos == -1) {
+		throw "Needle string should not be empty!";
+	} else {
+		if (bool) {
+			return string.substr(0, pos);
+		} else {
+			return string.slice(pos);
+		}
+	}
+};
 
 /** ARRAY FUNCTIONS */
 
