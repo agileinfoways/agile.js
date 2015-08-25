@@ -21,7 +21,8 @@ module.exports = function(grunt) {
 					console: true,
 					module: true,
 					document: true
-				}
+				},
+				strict: true
 			}
 		},
 		watch: {
