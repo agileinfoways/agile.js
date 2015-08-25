@@ -37,6 +37,7 @@
 					throw "The first argument supplied is an empty Array. Please supply array elements.";
 				}
 
+				var i;
 				for (i = 0; i < arg.length; i++) {
 					if (arg[i].arg === undefined) {
 						throw "Missing Argument " + (i + 1) + '.';
@@ -57,9 +58,8 @@
 	}
 
 	/**
-	 * Repeats a specific string till 'len' number of times
-	 * @param  number len - number of repetitions that user wants to have.
-	 * @return string 
+	 * Returns a character from the specified ASCII value.
+	 * @return character 
 	 */
 	function chr(asc) {
 		return String.fromCharCode(asc);
@@ -142,8 +142,7 @@
 	 * @return `string` String with uppercase first letter of word.
 	 */
 	String.prototype.ucwords = function() {
-
-		var strArray = this.trim().split(' ');
+		var i, strArray = this.trim().split(' ');
 		for (i = 0; i < strArray.length; i++) {
 			strArray[i] = strArray[i].charAt(0).toUpperCase() + strArray[i].slice(1);
 		}
@@ -176,7 +175,7 @@
 	 * @return `string`
 	 */
 	String.prototype.html_entities_decode = function() {
-		var t, x;
+		var t;
 		t = document.createElement('textarea');
 		t.style.display = "none";
 		t.innerHTML = this;
@@ -248,7 +247,8 @@
 	Array.prototype.unique = function() {
 		var u = {},
 			a = [],
-			i;
+			i,
+			l;
 		for (i = 0, l = this.length; i < l; ++i) {
 			if (u.hasOwnProperty(this[i])) {
 				continue;
@@ -265,7 +265,7 @@
 	 */
 	Array.prototype.has_duplicates = function() {
 		var obj = {},
-			i, status;
+			i, status, j;
 		for (i = 0, j = this.length; i < j; i++) {
 			obj[this[i]] = (obj[this[i]] || 0) + 1;
 		}
@@ -289,7 +289,7 @@
 
 		var obj = {},
 			i, status = false,
-			k;
+			k, j;
 		for (i = 0, j = this.length; i < j; i++) {
 			obj[this[i][key]] = (obj[this[i][key]] || 0) + 1;
 		}
@@ -309,7 +309,7 @@
 	 */
 	Array.prototype.duplicates = function() {
 		var obj = {},
-			i;
+			i, j;
 		for (i = 0, j = this.length; i < j; i++) {
 			obj[this[i]] = (obj[this[i]] || 0) + 1;
 		}
@@ -330,7 +330,7 @@
 			throw "Please provide a key to find duplicates.";
 		}
 		var obj = {},
-			i;
+			i, j;
 		for (i = 0, j = this.length; i < j; i++) {
 			obj[this[i][key]] = (obj[this[i][key]] || 0) + 1;
 		}
@@ -348,7 +348,7 @@
 		function shuffle(str) {
 			var a = str.split(""),
 				n = a.length,
-				i, j, temp,tmp;
+				i, j, tmp;
 			if (n == 1) {
 				return a.join("");
 			} else {
@@ -373,6 +373,14 @@
 			return this.shuffle();
 		}
 		return op;
+	};
+
+	/**
+	 * Returns string with '<br />' or '<br>' inserted before all newlines (\r\n, \n\r, \n and \r).
+	 * @return `string`
+	 */
+	String.prototype.nl2br = function(is_xhtml){
+		return this.replace(/\r\n|\n\r|\n|\r|/g, "<br"+ (typeof is_xhtml !== undefined && is_xhtml === true ? ' /' : '') +">");
 	};
 
 }());
