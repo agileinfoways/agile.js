@@ -375,4 +375,12 @@
 		return op;
 	};
 
+	/**
+	 * Returns string with '<br />' or '<br>' inserted before all newlines (\r\n, \n\r, \n and \r).
+	 * @return `string`
+	 */
+	String.prototype.nl2br = function(is_xhtml){
+		return this.replace(/\r\n|\n\r|\n|\r|/g, "<br"+ (typeof is_xhtml !== undefined && is_xhtml === true ? ' /' : '') +">");
+	};
+
 }());
