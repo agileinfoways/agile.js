@@ -50,8 +50,6 @@
 							throw "Data Type Error : Expecting " + arg[i].expected + " for Argument " + (i + 1) + ', but found ' + typeof arg[i].arg + ".";
 						}
 					}
-
-
 				}
 				break;
 		}
@@ -77,14 +75,13 @@
 	};
 
 	/**
-	 * Convert first letter to upper case of a string
-	 * @return `string`
+		* Convert first letter to upper case of a string
+	 	* @return `string`
 	 */
 	String.prototype.ucfirst = function() {
 		var opStr = this.trim();
 		return opStr.charAt(0).toUpperCase() + opStr.substr(1);
 	};
-
 
 	/**
 	 * Pad a string with the characters that are given as arguments
@@ -127,19 +124,18 @@
 	};
 
 	/**
-	 * Repeats a specific string till 'len' number of times
-	 * @param  number len - number of repetitions that user wants to have.
-	 * @return string 
-	 */
+	* Repeats a specific string till 'len' number of times
+	* @param  number len - number of repetitions that user wants to have.
+	* @return string 
+	*/
 	String.prototype.repeat = function(len) {
 		return new Array(len + 1).join(this);
 	};
 
-
 	/**
-	 * Upper case first letter of the word.
-	 * @return `string` String with uppercase first letter of word.
-	 */
+	* Upper case first letter of the word.
+	* @return `string` String with uppercase first letter of word.
+	*/
 	String.prototype.ucwords = function() {
 		var i, strArray = this.trim().split(' ');
 		for (i = 0; i < strArray.length; i++) {
@@ -195,8 +191,9 @@
 	 * @return `string`
 	 */
 	String.prototype.rtrim = function(c) {
-		if (c)
+		if (c){
 			typecheck(c, 'string');
+		}
 		var a = this.replace(/\s+$/, "");
 		c = c ? c : "\s";
 		return a.replace(new RegExp("[" + c + "]+$"), "");
@@ -209,8 +206,9 @@
 	 */
 	String.prototype.ltrim = function(c) {
 		var str = this.reverse();
-		if (c)
+		if (c){
 			typecheck(c, 'string');
+		}
 		var a = str.replace(/\s+$/, "");
 		c = c ? c : "\s";
 		return a.replace(new RegExp("[" + c + "]+$"), "").reverse();
@@ -375,11 +373,11 @@
 	};
 
 	/**
-	 * Returns string with '<br />' or '<br>' inserted before all newlines (\r\n, \n\r, \n and \r).
-	 * @return `string`
-	 */
-	String.prototype.nl2br = function(is_xhtml){
-		return this.replace(/\r\n|\n\r|\n|\r|/g, "<br"+ (typeof is_xhtml !== undefined && is_xhtml === true ? ' /' : '') +">");
+	* Returns string with '<br />' or '<br>' inserted before all newlines (\r\n, \n\r, \n and \r).
+	* @return `string`
+	*/
+	String.prototype.nl2br = function(is_xhtml) {
+		return this.replace(/\r\n|\n\r|\n|\r|/g, "<br" + (typeof is_xhtml !== undefined && is_xhtml === true ? ' /' : '') + ">");
 	};
 
 }());
