@@ -337,7 +337,7 @@ String.prototype.shuffle = function() {
 	function shuffle(str) {
 		var a = str.split(""),
 			n = a.length,
-			i, j, temp;
+			i, j, temp,tmp;
 		if (n == 1) {
 			return a.join("");
 		} else {
