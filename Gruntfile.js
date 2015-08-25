@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+	'use strict';
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -20,7 +21,8 @@ module.exports = function(grunt) {
 					jQuery: true,
 					console: true,
 					module: true,
-					document: true
+					document: true,
+					strict: true
 				},
 				strict: true
 			}
