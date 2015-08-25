@@ -72,7 +72,7 @@ String.prototype.lcfirst = function() {
  * @padMode string - 'LEFT', 'RIGHT', 'BOTH' [Default 1]
  * @return 	string
  */
-String.prototype.strpad = function(padCh, padLen, padMode) {
+String.prototype.pad = function(padCh, padLen, padMode) {
 	var result = this;
 
 	padLen = padLen || 1;
