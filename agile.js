@@ -56,6 +56,16 @@
 		}
 	}
 
+	/**
+	 * Repeats a specific string till 'len' number of times
+	 * @param  number len - number of repetitions that user wants to have.
+	 * @return string 
+	 */
+	Number.prototype.chr = function() {
+		return String.fromCharCode(this);
+	};
+
+
 	/** STRING FUNCTIONS */
 
 	/**
