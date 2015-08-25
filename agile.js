@@ -61,8 +61,8 @@
 	 * @param  number len - number of repetitions that user wants to have.
 	 * @return string 
 	 */
-	Number.prototype.chr = function() {
-		return String.fromCharCode(this);
+	function chr(asc) {
+		return String.fromCharCode(asc);
 	};
 
 

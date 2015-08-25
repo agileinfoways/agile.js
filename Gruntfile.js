@@ -29,6 +29,12 @@ module.exports = function(grunt) {
 				unused: true
 			}
 		},
+		jscs: {
+			src: "agile.js",
+			options: {
+				config: ".jscsrc"
+			}
+		},
 		watch: {
 			files: ['<%= jshint.files %>'],
 			tasks: ['jshint', 'uglify']
@@ -38,6 +44,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks("grunt-jscs");
 	
-	grunt.registerTask('default', ['jshint', 'uglify', 'watch']);
+	grunt.registerTask('default', ['jshint', 'jscs', 'uglify', 'watch']);
 };
