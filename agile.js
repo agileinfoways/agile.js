@@ -63,8 +63,7 @@
 	 */
 	function chr(asc) {
 		return String.fromCharCode(asc);
-	};
-
+	}
 
 	/** STRING FUNCTIONS */
 
