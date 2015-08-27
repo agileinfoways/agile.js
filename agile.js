@@ -235,6 +235,21 @@
 		}
 	};
 
+	/**
+	 * Split a string into smaller chunks.
+	 * @param `length` length of chunks
+	 * @param  `character` character to add at every chunklength and end
+	 * @return `string`
+	 */
+	String.prototype.chunk_split = function(length, character) {
+		length = parseInt(length, 10) || 76;
+		character = character || '\r\n';
+		if (length < 1) {
+			return false;
+		}
+		return this.match(new RegExp('.{0,' + length + '}', 'g')).join(character);
+	};
+
 	/** ARRAY FUNCTIONS */
 
 	/**
