@@ -395,4 +395,33 @@
 		return this.replace(/\r\n|\n\r|\n|\r|/g, "<br" + (typeof is_xhtml !== undefined && is_xhtml === true ? ' /' : '') + ">");
 	};
 
+	/**
+	 * Replaces a part of a string with another string.
+	 * @param `string` specified string to replace
+	 * @param `replace` string / character to replace
+	 * @param `start` start replacing at the specified position. If the start parameter is a negative number and length is less than or equal to start, length becomes 0.
+	 * @param `length` a length of string to be replaced.
+	 * @return `string`
+	 */
+	String.prototype.substr_replace = function(replace, start, length) {
+		if (!start) {
+			throw "Please enter starting index.";
+		}
+
+		if (start < 0) {
+			start = start + this.length;
+		}
+
+		length = length !== undefined ? length : this.length;
+		if (length < 0) {
+			length = length + this.length - start;
+		}
+
+		if (start > this.length) {
+			throw "Please enter valid index.";
+		}
+		return this.slice(0, start) + replace.substr(0, length) + replace.slice(length) + this.slice(start + length);
+
+	};
+
 }());
