@@ -84,6 +84,14 @@
 	};
 
 	/**
+	 * Compare two strings 
+	 * @return number
+	 */
+	String.prototype.cmp = function(secondStr) {
+		return this.trim().localeCompare(secondStr.trim());
+	};
+
+	/**
 	 * Pad a string with the characters that are given as arguments
 	 * @padCh  	string
 	 * @padLen 	number - [Default 1]
