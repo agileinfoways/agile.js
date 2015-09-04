@@ -358,6 +358,48 @@
 	};
 
 	/**
+	 * Find first index of a value based on key for associative array
+	 * @param  `string` 		value 	String to be find index of
+	 * @param  `string|number` 	key  	Associative array key
+	 * @return `number`       			First Index where the element is found
+	 */
+	Array.prototype.indexOfAssoc = function(value, key) {
+
+		if (!key && key !== 0) {
+			throw "Please provide a key to find index of.";
+		}
+		
+
+		var i;
+		for (i = 0; i < this.length; i++) {
+
+			typecheck([{arg:this[i], expected:'object'}], 'bulk');
+
+			if(this[i][key] === value) {
+				return i;
+			}
+		}
+	};
+
+	/**
+	 * Find last index of a value based on key for associative array
+	 */
+	Array.prototype.lastIndexOfAssoc = function(value, key) {
+
+		typecheck(key, 'string');
+
+		if (!key && key !== 0) {
+			throw "Please provide a key to find index of.";
+		}
+		var i;
+		for (i = this.length - 1; i >= 0; i--) {
+			if(this[i][key] === value) {
+				return i;
+			}
+		}
+	};
+
+	/**
 	 * Returns shuffled string
 	 * @return `string`
 	 */
