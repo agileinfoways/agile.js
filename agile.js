@@ -66,8 +66,8 @@
 		re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 		if (this.indexOf(",") > -1){
 			emailArr = this.split(',');
-			for (i = 0;i<emailArr.length;i++){
-				if (!re.test(emailArr[i].trim())){
+			for (i = 0; i < emailArr.length; i++) {
+				if (!re.test(emailArr[i].trim())) {
 					return false;
 				}
 			}
