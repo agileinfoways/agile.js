@@ -55,6 +55,13 @@
 		}
 	}
 
+	/** VALIDATIONS FUNCTIONS */
+
+	String.prototype.isEmail = function() {
+		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		return re.test(this.trim());
+	};
+
 	/**
 	 * Returns a character from the specified ASCII value.
 	 * @return character 
@@ -76,7 +83,7 @@
 
 	/**
 		* Convert first letter to upper case of a string
-	 	* @return `string`
+		* @return `string`
 	 */
 	String.prototype.ucfirst = function() {
 		var opStr = this.trim();
