@@ -57,6 +57,10 @@
 
 	/** VALIDATIONS FUNCTIONS */
 
+	/**
+	 * Validates if string is valid email or not
+	 * @return boolean
+	 */
 	String.prototype.isEmail = function() {
 		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 		return re.test(this.trim());
