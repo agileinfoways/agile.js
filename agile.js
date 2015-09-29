@@ -62,10 +62,11 @@
 	 * @return boolean
 	 */
 	String.prototype.isEmail = function() {
-		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		var re, emailArr, i;
+		re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 		if (this.indexOf(",") > -1){
-			var emailArr = this.split(',');
-			for (var i = 0;i<emailArr.length;i++){
+			emailArr = this.split(',');
+			for (i = 0;i<emailArr.length;i++){
 				if (!re.test(emailArr[i].trim())){
 					return false;
 				}
