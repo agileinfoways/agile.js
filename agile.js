@@ -497,16 +497,16 @@
 	};
 
 	/** OBJECT FUNCTIONS */
-	
+
 	/**
 	 * Convert object to query string
 	 * @return `string`
 	 */
 	Object.prototype.toQueryString = function() {
 		var str = '', i;
-		for(i in this) {
-			if(typeof this[i] !== 'function') {
-				str += i + '=' + this[i] + '&';
+		for (i in this) {
+			if (typeof this[i] !== 'function') {
+				str += i + '=' + encodeURIComponent(this[i]) + '&';
 			}
 		}
 		return str.rtrim('&');
