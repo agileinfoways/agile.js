@@ -55,6 +55,20 @@
 		}
 	}
 
+	/**
+	 * Convert object to query string
+	 * @return `string`
+	 */
+	function buildQueryString(object) {
+		var str = '', i;
+		for (i in object) {
+			if (typeof object[i] !== 'function') {
+				str += i + '=' + encodeURIComponent(object[i]) + '&';
+			}
+		}
+		return str.rtrim('&');
+	}
+	
 	/** VALIDATIONS FUNCTIONS */
 
 	/**
@@ -79,7 +93,7 @@
 
 	/**
 	 * Returns a character from the specified ASCII value.
-	 * @return character 
+	 * @return character
 	 */
 	function chr(asc) {
 		return String.fromCharCode(asc);
@@ -494,22 +508,6 @@
 				return i;
 			}
 		}
-	};
-
-	/** OBJECT FUNCTIONS */
-
-	/**
-	 * Convert object to query string
-	 * @return `string`
-	 */
-	Object.prototype.toQueryString = function() {
-		var str = '', i;
-		for (i in this) {
-			if (typeof this[i] !== 'function') {
-				str += i + '=' + encodeURIComponent(this[i]) + '&';
-			}
-		}
-		return str.rtrim('&');
 	};
 
 }());

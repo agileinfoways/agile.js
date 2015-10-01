@@ -5,11 +5,12 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 		uglify: {
 			options: {
-				banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+				banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
+				mangle: false
 			},
 			dist: {
 				files: {
-					'<%= pkg.name %>.min.js': ['agile.js']
+					'agile.min.js': ['agile.js']
 				}
 			}
 		},
@@ -36,7 +37,7 @@ module.exports = function(grunt) {
 		},
 		watch: {
 			files: ['<%= jshint.files %>'],
-			tasks: ['jshint', 'uglify']
+			tasks: ['jshint', 'jscs', 'uglify']
 		}
 	});
 
