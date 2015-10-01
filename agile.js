@@ -1,6 +1,3 @@
-(function () {
-	"use strict";
-
 	/** UTILITY FUNCTIONS */
 
 	/**
@@ -68,7 +65,7 @@
 		}
 		return str.rtrim('&');
 	}
-	
+
 	/** VALIDATIONS FUNCTIONS */
 
 	/**
@@ -93,7 +90,7 @@
 
 	/**
 	 * Returns a character from the specified ASCII value.
-	 * @return character
+	 * @return character 
 	 */
 	function chr(asc) {
 		return String.fromCharCode(asc);
@@ -509,5 +506,3 @@
 			}
 		}
 	};
-
-}());
