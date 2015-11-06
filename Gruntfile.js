@@ -42,5 +42,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks("grunt-jscs");
 	
-	grunt.registerTask('default', ['jshint', 'jscs', 'uglify', 'watch']);
+	// grunt.registerTask('default', ['jshint', 'jscs', 'uglify', 'watch']);
+	grunt.registerTask('default', ['jshint', 'jscs', 'watch']);
 };
